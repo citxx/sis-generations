@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Поколения ЛКШ</title>
+    <meta charset="utf-8"/>
+  </head>
+
+  <body>
+    <script type="text/javascript" src="http://poldnev.ru/lksh/js/data_main.js"></script>
+    <script type="text/javascript">
+      console.log("gphoto", gphoto);
+      console.log("gsmlink", gsmlink);
+      console.log("gisph", gisph);
+
+      var citiesNumber = gcname.length;
+      var cities = {};
+      for (var i = 1; i < citiesNumber; ++i) {
+        var city = {};
+        city.name = gcname[i];
+        city.id = i;
+        cities[i] = city;
+      }
+
+      var sessions = {};
+      for (var id in glname) {
+        var session = {};
+        session.id = id;
+        session.name = glname[id];
+        sessions[id] = session;
+      }
+
+      var peopleNumber = gname.length;
+      var people = [];
+      for (var i = 0; i < peopleNumber; ++i) {
+        var person = {};
+        person.name = gname[i];
+        person.surname = gsur[i];
+        person.middleName = gpatr[i];
+        person.sessionsNumber = gcnt[i];
+        person.history = ghist[i];
+        person.last = glast[i];
+        person.cities = [];
+        for (var j = 0 ; j < gcities[i].length; ++j) {
+          person.cities.push(cities[gcities[i][j]]);
+        }
+        people.push(person);
+      }
+
+      console.log("cities", cities);
+      console.log("sessions", sessions);
+      console.log("people", people);
+
+    </script>
+  </body>
+</html>
